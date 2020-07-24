@@ -1,0 +1,248 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000 E000E000 
+                       SysTick_BASE
+                               EQU              0xE000E000
+    2 00000000 00000010 
+                       SysTick_CTRL
+                               EQU              0x00000010
+    3 00000000 00000014 
+                       SysTick_LOAD
+                               EQU              0x00000014
+    4 00000000 00000018 
+                       SysTick_VAL
+                               EQU              0x00000018
+    5 00000000 E000ED00 
+                       SCB_BASE
+                               EQU              0xE000ED00
+    6 00000000 00000D20 
+                       SCB_SHP EQU              0x00000D20
+    7 00000000         ;-------------------------------------------------------
+                       ------------------------------------
+    8 00000000                 AREA             DATA, ALIGN=2
+    9 00000000         
+   10 00000000 00 00 00 
+              00       TimeDelay
+                               SPACE            4
+   11 00000004         
+   12 00000004         ;-------------------------------------------------------
+                       ------------------------------------
+   13 00000004         ;Enable thumb instructions
+   14 00000004                 THUMB
+   15 00000004                 AREA             |.text|, CODE, READONLY, ALIGN=
+2
+   16 00000000         
+   17 00000000         ;|.text| - make assembly code callable in C 
+   18 00000000         ;CODE - Stores the bellow code in ROM
+   19 00000000         ;READONLY - Cannot be modified during the runtime
+   20 00000000         ;ALIGN=2 - skips 0 or 1 byte to make next halfword align
+                       ed
+   21 00000000         
+   22 00000000         ;Make the fuction SysTick_Initialize callable from other
+                        files
+   23 00000000                 EXPORT           SysTick_Initialize
+   24 00000000                 EXPORT           SysTick_Handler
+   25 00000000                 EXPORT           delay
+   26 00000000         
+   27 00000000         ;The begining of the function
+   28 00000000         SysTick_Initialize
+                               PROC
+   29 00000000         
+   30 00000000         ;Inform the base address to access each part of register
+                        SysTick,
+   31 00000000 480E            LDR              r0, =SysTick_Initialize
+   32 00000002         ;Disable SysTick IRQ and SysTick counter, select externa
+                       l clock
+   33 00000002 F04F 0100       MOV              r1, #0
+   34 00000006 6101            STR              r1, [r0, #SysTick_CTRL]
+   35 00000008         ;Specify the number of clock cycles between two interrup
+                       ts
+   36 00000008 F44F 7283       LDR              r2, =262
+   37 0000000C 6142            STR              r2, [r0, #SysTick_LOAD]
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   38 0000000E         ;Clear SysTick current value register (SysTick_VAL)
+   39 0000000E F04F 0100       MOV              r1, #0
+   40 00000012 6181            STR              r1, [r0, #SysTick_VAL]
+   41 00000014         ;Set interrupt priority for SysTick
+   42 00000014 4A0A            LDR              r2, =SCB_BASE
+   43 00000016 F502 6252       ADD              r2, r2, #SCB_SHP
+   44 0000001A F04F 0310       MOV              r3, #1<<4
+   45 0000001E 72D3            STRB             r3, [r2,#11]
+   46 00000020         ;Set SysTick_CTRL to enable SysTick timer and SysTick in
+                       terrupt
+   47 00000020 6901            LDR              r1, [r0, #SysTick_CTRL]
+   48 00000022 F041 0103       ORR              r1, r1, #3
+   49 00000026 6101            STR              r1, [r0, #SysTick_CTRL]
+   50 00000028         
+   51 00000028 4770            BX               lr
+   52 0000002A                 ENDP
+   53 0000002A         ;-------------------------------------------------------
+                       ------------------------------------
+   54 0000002A         SysTick_Handler
+                               PROC
+   55 0000002A F1AA 0A01       SUB              r10, r10, #1
+   56 0000002E 4770            BX               lr
+   57 00000030                 ENDP
+   58 00000030         ;-------------------------------------------------------
+                       ------------------------------------
+   59 00000030         delay   PROC
+   60 00000030         ;Make a copy of TimeDelay
+   61 00000030 4682            MOV              r10, r0
+   62 00000032         loop
+   63 00000032         ;Wait for TimeDelay = 0
+   64 00000032 F1BA 0F00       CMP              r10, #0
+   65 00000036         ;r10 is descreased periodically by SysTick_Handler
+   66 00000036 D1FC            BNE              loop
+   67 00000038 4770            BX               lr
+   68 0000003A                 ENDP
+   69 0000003A         ;-------------------------------------------------------
+                       ------------------------------------
+   70 0000003A         
+   71 0000003A 00 00           ALIGN
+   72 0000003C                 END
+              00000000 
+              E000ED00 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
+interwork --depend=.\objects\systick_initialize.d -o.\objects\systick_initializ
+e.o -I..\Assembly -IC:\Users\Galc_\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\
+Device\Include\TM4C129 -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 
+1" --predefine="__UVISION_VERSION SETA 531" --predefine="TM4C1294NCPDT SETA 1" 
+--list=.\listings\systick_initialize.lst ..\Assembly\SysTick_Initialize.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DATA 00000000
+
+Symbol: DATA
+   Definitions
+      At line 8 in file ..\Assembly\SysTick_Initialize.s
+   Uses
+      None
+Comment: DATA unused
+TimeDelay 00000000
+
+Symbol: TimeDelay
+   Definitions
+      At line 10 in file ..\Assembly\SysTick_Initialize.s
+   Uses
+      None
+Comment: TimeDelay unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 15 in file ..\Assembly\SysTick_Initialize.s
+   Uses
+      None
+Comment: .text unused
+SysTick_Handler 0000002A
+
+Symbol: SysTick_Handler
+   Definitions
+      At line 54 in file ..\Assembly\SysTick_Initialize.s
+   Uses
+      At line 24 in file ..\Assembly\SysTick_Initialize.s
+Comment: SysTick_Handler used once
+SysTick_Initialize 00000000
+
+Symbol: SysTick_Initialize
+   Definitions
+      At line 28 in file ..\Assembly\SysTick_Initialize.s
+   Uses
+      At line 23 in file ..\Assembly\SysTick_Initialize.s
+      At line 31 in file ..\Assembly\SysTick_Initialize.s
+
+delay 00000030
+
+Symbol: delay
+   Definitions
+      At line 59 in file ..\Assembly\SysTick_Initialize.s
+   Uses
+      At line 25 in file ..\Assembly\SysTick_Initialize.s
+Comment: delay used once
+loop 00000032
+
+Symbol: loop
+   Definitions
+      At line 62 in file ..\Assembly\SysTick_Initialize.s
+   Uses
+      At line 66 in file ..\Assembly\SysTick_Initialize.s
+Comment: loop used once
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+SCB_BASE E000ED00
+
+Symbol: SCB_BASE
+   Definitions
+      At line 5 in file ..\Assembly\SysTick_Initialize.s
+   Uses
+      At line 42 in file ..\Assembly\SysTick_Initialize.s
+Comment: SCB_BASE used once
+SCB_SHP 00000D20
+
+Symbol: SCB_SHP
+   Definitions
+      At line 6 in file ..\Assembly\SysTick_Initialize.s
+   Uses
+      At line 43 in file ..\Assembly\SysTick_Initialize.s
+Comment: SCB_SHP used once
+SysTick_BASE E000E000
+
+Symbol: SysTick_BASE
+   Definitions
+      At line 1 in file ..\Assembly\SysTick_Initialize.s
+   Uses
+      None
+Comment: SysTick_BASE unused
+SysTick_CTRL 00000010
+
+Symbol: SysTick_CTRL
+   Definitions
+      At line 2 in file ..\Assembly\SysTick_Initialize.s
+   Uses
+      At line 34 in file ..\Assembly\SysTick_Initialize.s
+      At line 47 in file ..\Assembly\SysTick_Initialize.s
+      At line 49 in file ..\Assembly\SysTick_Initialize.s
+
+SysTick_LOAD 00000014
+
+Symbol: SysTick_LOAD
+   Definitions
+      At line 3 in file ..\Assembly\SysTick_Initialize.s
+   Uses
+      At line 37 in file ..\Assembly\SysTick_Initialize.s
+Comment: SysTick_LOAD used once
+SysTick_VAL 00000018
+
+Symbol: SysTick_VAL
+   Definitions
+      At line 4 in file ..\Assembly\SysTick_Initialize.s
+   Uses
+      At line 40 in file ..\Assembly\SysTick_Initialize.s
+Comment: SysTick_VAL used once
+6 symbols
+349 symbols in table

@@ -1,0 +1,14 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+                       
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
+interwork --depend=.\objects\addresses.d -o.\objects\addresses.o -I..\Assembly 
+-IC:\Users\Galc_\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4
+C129 -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__
+UVISION_VERSION SETA 531" --predefine="TM4C1294NCPDT SETA 1" --list=.\listings\
+addresses.lst addresses.s
+333 symbols in table

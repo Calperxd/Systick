@@ -1,0 +1,122 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 THUMB                        ;Enable thumb instr
+                                                            uctions
+    2 00000000                 AREA             |.text|, CODE, READONLY, ALIGN=
+2
+    3 00000000         
+    4 00000000         Systick_Initialize_Useds_Addresses
+                               PROC
+    5 00000000                 EXPORT           Systick_Initialize_Useds_Addres
+ses
+    6 00000000 E000E000 
+                       SysTick_BASE
+                               EQU              0xE000E000
+    7 00000000 00000010 
+                       SysTick_CTRL
+                               EQU              0x00000010
+    8 00000000 00000014 
+                       SysTick_LOAD
+                               EQU              0x00000014
+    9 00000000 00000018 
+                       SysTick_VAL
+                               EQU              0x00000018
+   10 00000000 E000ED00 
+                       SCB_BASE
+                               EQU              0xE000ED00
+   11 00000000 00000D20 
+                       SCB_SHP EQU              0x00000D20
+   12 00000000         
+   13 00000000                 ENDP
+   14 00000000                 ALIGN
+   15 00000000                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
+interwork --depend=.\objects\systick_initialize_useds_addresses.d -o.\objects\s
+ystick_initialize_useds_addresses.o -I..\Assembly -IC:\Users\Galc_\AppData\Loca
+l\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129 -IC:\Keil_v5\ARM\CMSIS\I
+nclude --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 531" --p
+redefine="TM4C1294NCPDT SETA 1" --list=.\listings\systick_initialize_useds_addr
+esses.lst ..\Assembly\SysTick_Initialize_Useds_Addresses.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 2 in file ..\Assembly\SysTick_Initialize_Useds_Addresses.s
+   Uses
+      None
+Comment: .text unused
+Systick_Initialize_Useds_Addresses 00000000
+
+Symbol: Systick_Initialize_Useds_Addresses
+   Definitions
+      At line 4 in file ..\Assembly\SysTick_Initialize_Useds_Addresses.s
+   Uses
+      At line 5 in file ..\Assembly\SysTick_Initialize_Useds_Addresses.s
+Comment: Systick_Initialize_Useds_Addresses used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+SCB_BASE E000ED00
+
+Symbol: SCB_BASE
+   Definitions
+      At line 10 in file ..\Assembly\SysTick_Initialize_Useds_Addresses.s
+   Uses
+      None
+Comment: SCB_BASE unused
+SCB_SHP 00000D20
+
+Symbol: SCB_SHP
+   Definitions
+      At line 11 in file ..\Assembly\SysTick_Initialize_Useds_Addresses.s
+   Uses
+      None
+Comment: SCB_SHP unused
+SysTick_BASE E000E000
+
+Symbol: SysTick_BASE
+   Definitions
+      At line 6 in file ..\Assembly\SysTick_Initialize_Useds_Addresses.s
+   Uses
+      None
+Comment: SysTick_BASE unused
+SysTick_CTRL 00000010
+
+Symbol: SysTick_CTRL
+   Definitions
+      At line 7 in file ..\Assembly\SysTick_Initialize_Useds_Addresses.s
+   Uses
+      None
+Comment: SysTick_CTRL unused
+SysTick_LOAD 00000014
+
+Symbol: SysTick_LOAD
+   Definitions
+      At line 8 in file ..\Assembly\SysTick_Initialize_Useds_Addresses.s
+   Uses
+      None
+Comment: SysTick_LOAD unused
+SysTick_VAL 00000018
+
+Symbol: SysTick_VAL
+   Definitions
+      At line 9 in file ..\Assembly\SysTick_Initialize_Useds_Addresses.s
+   Uses
+      None
+Comment: SysTick_VAL unused
+6 symbols
+341 symbols in table

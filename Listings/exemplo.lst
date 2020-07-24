@@ -1,0 +1,131 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; Exemplo.s
+    2 00000000         ; Desenvolvido para a placa EK-TM4C1294XL
+    3 00000000         ; Prof. Guilherme Peron
+    4 00000000         ; 12/03/2018
+    5 00000000         
+    6 00000000         ; ------------------------------------------------------
+                       -------------------------
+    7 00000000                 THUMB                        ; Instruções do tip
+                                                            o Thumb-2
+    8 00000000         ; ------------------------------------------------------
+                       -------------------------
+    9 00000000         ; Declarações EQU - Defines
+   10 00000000         ;<NOME>         EQU <VALOR>
+   11 00000000         ; ------------------------------------------------------
+                       -------------------------
+   12 00000000         ; Área de Dados - Declarações de variáveis
+   13 00000000                 AREA             DATA, ALIGN=2
+   14 00000000         ; Se alguma variável for chamada em outro arquivo
+   15 00000000         ;EXPORT  <var> [DATA,SIZE=<tam>]   ; Permite chamar a va
+                       riável <var> a 
+   16 00000000         ; partir de outro arquivo
+   17 00000000         ;<var> SPACE <tam>                        ; Declara uma 
+                       variável de nome <var>
+   18 00000000         ; de <tam> bytes a partir da primeira 
+   19 00000000         ; posição da RAM  
+   20 00000000         
+   21 00000000         ; ------------------------------------------------------
+                       -------------------------
+   22 00000000         ; Área de Código - Tudo abaixo da diretiva a seguir será
+                        armazenado na memória de 
+   23 00000000         ;                  código
+   24 00000000                 AREA             |.text|, CODE, READONLY, ALIGN=
+2
+   25 00000000         
+   26 00000000         ; Se alguma função do arquivo for chamada em outro arqui
+                       vo 
+   27 00000000                 EXPORT           Start       ; Permite chamar a 
+                                                            função Start a part
+                                                            ir de 
+   28 00000000         ; outro arquivo. No caso startup.s
+   29 00000000         
+   30 00000000         ; Se chamar alguma função externa 
+   31 00000000         ;IMPORT <func>              ; Permite chamar dentro dest
+                       e arquivo uma 
+   32 00000000         ; função <func>
+   33 00000000                 IMPORT           SysTick_Initialize
+   34 00000000         
+   35 00000000         ; ------------------------------------------------------
+                       -------------------------
+   36 00000000         ; Função main()
+   37 00000000         Start
+   38 00000000         ; Comece o código aqui <================================
+                       ======================
+   39 00000000 F7FF FFFE       BL               SysTick_Initialize
+   40 00000004         
+   41 00000004                 ALIGN                        ; garante que o fim
+                                                             da seção está alin
+                                                            hada 
+   42 00000004                 END                          ; fim do arquivo
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
+interwork --depend=.\objects\exemplo.d -o.\objects\exemplo.o -I..\Assembly -IC:
+\Users\Galc_\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129
+ -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__UVIS
+ION_VERSION SETA 531" --predefine="TM4C1294NCPDT SETA 1" --list=.\listings\exem
+plo.lst ..\Assembly\exemplo.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DATA 00000000
+
+Symbol: DATA
+   Definitions
+      At line 13 in file ..\Assembly\exemplo.s
+   Uses
+      None
+Comment: DATA unused
+1 symbol
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 24 in file ..\Assembly\exemplo.s
+   Uses
+      None
+Comment: .text unused
+Start 00000000
+
+Symbol: Start
+   Definitions
+      At line 37 in file ..\Assembly\exemplo.s
+   Uses
+      At line 27 in file ..\Assembly\exemplo.s
+Comment: Start used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+SysTick_Initialize 00000000
+
+Symbol: SysTick_Initialize
+   Definitions
+      At line 33 in file ..\Assembly\exemplo.s
+   Uses
+      At line 39 in file ..\Assembly\exemplo.s
+Comment: SysTick_Initialize used once
+1 symbol
+338 symbols in table
