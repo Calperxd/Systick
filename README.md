@@ -11,4 +11,4 @@ Let's start from the ***EQU*** directives in assembly code, observe that all the
 
 ![EQU](https://user-images.githubusercontent.com/48101913/88448541-ff842080-ce0c-11ea-8006-16e806b403cc.JPG)
 
-The ARM CORTEX M4 has some interesting features(into the processor), by default these features are mapped at address .
+The ARM CORTEX M4 has some interesting features(into the processor), by default these features are mapped at address 0xE000E000 to 0xE000EFFF, this space is commonly called space of Core Peripherals
