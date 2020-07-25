@@ -18,3 +18,5 @@ The ARM CORTEX M4 has some interesting features(into the processor), by default 
 and to TM4C1294NCPDT we have the following addresses, the unused spaces are reserved by the chip manufacturer.
 
 ![Core Peripherals Addresses](https://user-images.githubusercontent.com/48101913/88450511-83de9f80-ce1d-11ea-9343-5ebc643492d4.JPG)
+
+Now we have a overview how the peripherals are mapped, so let's go to the code and see the implementation and how it works,
