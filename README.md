@@ -16,3 +16,5 @@ The ARM CORTEX M4 has some interesting features(into the processor), by default 
 ![Memmory-Map](https://user-images.githubusercontent.com/48101913/88449827-2a27a680-ce18-11ea-9aeb-c64620e11a45.JPG)
 
 and to TM4C1294NCPDT we have the following addresses, the unused spaces are reserved by the chip manufacturer.
+
+![Core Peripherals Addresses](https://user-images.githubusercontent.com/48101913/88450511-83de9f80-ce1d-11ea-9343-5ebc643492d4.JPG)
