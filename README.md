@@ -9,3 +9,6 @@ The systick is very useful peripheral, because it's peripheral inside the microc
 
 Let's start from the ***EQU*** directives in assembly code, observe that all the assembly files needed are into Assembly folder and all the implementations in C are into C folder, first of all I declared some directives to improve the readability of the code and do some operations too.
 
+![EQU](https://user-images.githubusercontent.com/48101913/88448541-ff842080-ce0c-11ea-8006-16e806b403cc.JPG)
+
+
