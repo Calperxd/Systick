@@ -27,7 +27,7 @@ and to TM4C1294NCPDT we have the following addresses, the unused spaces are rese
 
 Now that we have an overview how the peripherals are mapped, so let's go to the code and see the implementation and how it works.
 
-![SysTick_Procedure](https://user-images.githubusercontent.com/48101913/88466126-369f1400-ce97-11ea-8459-3f221728d656.JPG)
+![SysTick_Procedure](https://user-images.githubusercontent.com/48101913/88619874-f4322e80-d072-11ea-8de6-b45a2ba42b2e.JPG)
 
 Note that we start charging the base address of SysTick because if we need to improve the readability of the code we can declare masks before start the code and use OR mask, XOR mask, AND mask, etc(we will discuss a little bit more about this later), we also know that each register has a specific address in memory and these registers has 4 bytes of space between them in most of the case they follow this standard, for example, if we see the MPU registers in the image below we can note that the next registers are 4 bytes spaced until finish the set of registers
 
