@@ -35,3 +35,6 @@ Note that we start charging the base address of SysTick because if we need to im
 
 In the first part of the code we are setting up the base address of ***Core Peripherals***, it is necessary because to access a specific register we just need to do the sum: BASE ADDRRESS + OFFSET(wanted register).
 
+
+
+
