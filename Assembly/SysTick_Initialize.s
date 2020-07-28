@@ -28,7 +28,7 @@ TimeDelay	SPACE 4
 SysTick_Initialize          PROC
 
 ;Inform the base address to access each part of register SysTick,
-    LDR r0, =SysTick_Initialize    
+    LDR r0, =SysTick_BASE    
 ;Disable SysTick IRQ and SysTick counter, select external clock
     MOV r1, #0
     STR r1, [r0, #SysTick_CTRL]
