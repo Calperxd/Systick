@@ -33,3 +33,5 @@ Note that we start charging the base address of SysTick because if we need to im
 
 ![MPU](https://user-images.githubusercontent.com/48101913/88466608-13c32e80-ce9c-11ea-9dfc-d5881d833414.JPG)
 
+In the first part of the code we are setting up the base address of ***Core Peripherals***, it is necessary because to access a specific register we just need to do the sum: BASE ADDRRESS + OFFSET(wanted register).
+
