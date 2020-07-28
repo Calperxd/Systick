@@ -33,6 +33,6 @@ Note that we start charging the base address of SysTick because if we need to im
 
 ![MPU](https://user-images.githubusercontent.com/48101913/88466608-13c32e80-ce9c-11ea-9dfc-d5881d833414.JPG)
 
-In the first part of the code we are setting up the base address of ***Core Peripherals***, it is necessary because to access a specific register we just need to do the sum: BASE ADDRESS + OFFSET(wanted register). The **LDR r0, =SysTick_BASE*** instruction holds the base address, and ***STR r1, [r0, #SysTick_CTRL]*** do the sum BASE ADDRESS + OFFSET and store it with the value into the ***R1*** that is zero, initially what we want in the register ***STCTRL*** is filling it with zeros exactly such as the image below.
+In the first part of the code we are setting up the base address of ***Core Peripherals***, it is necessary because to access a specific register we just need to do the sum: BASE ADDRESS + OFFSET(wanted register). The ***LDR r0, =SysTick_BASE*** instruction holds the base address, and ***STR r1, [r0, #SysTick_CTRL]*** do the sum BASE ADDRESS + OFFSET and store it with the value into the ***R1*** that is 0x04, initially what we want in the register ***STCTRL*** is filling it with zeros and set the system clock as our clock source exactly such as the image below.
 
 ![STCTRL](https://user-images.githubusercontent.com/48101913/88621645-6278f000-d077-11ea-9e24-2ddbc05cec4b.PNG)
